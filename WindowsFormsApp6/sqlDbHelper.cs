@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+using System.Windows.Forms;
 
 namespace WindowsFormsApp6
 {
@@ -30,7 +31,7 @@ namespace WindowsFormsApp6
 
 
 
-        public int ExecuteNonquery(string strSql, CommandType commandType, SqlParameter[] parameters)
+        public int ExecuteNonquery(string strSql, CommandType commandType,params SqlParameter[] parameters)
         {
             int count = 0;
             using (SqlConnection con = new SqlConnection(ConnectString))
@@ -109,5 +110,63 @@ namespace WindowsFormsApp6
         {
             return ExecuteReader(strSql, CommandType.Text);
         }
+        public static SqlDataAdapter ExecuteAdapter(string strSql, CommandType commandType, SqlParameter[] parameters, SqlConnection con)
+        {
+            //SqlDataAdapter adapter;
+            //con = new SqlConnection(ConnectString);
+            try
+            {
+                if (con.State != ConnectionState.Open)
+                    con.Open();
+                SqlCommand cmd = new SqlCommand(strSql, con);
+                cmd.CommandType = commandType;
+                if (parameters != null)
+                {
+                    foreach (SqlParameter pa in parameters)
+                    {
+                        cmd.Parameters.Add(pa);
+                    }
+                }
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                return adapter;
+            }
+            catch(SqlException ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return null;
+            }
+            
+            //con.Open();
+            //reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            //return reader;
+        }
+        public DataTable ExecuteDataTable(string strSql, CommandType commandType, SqlParameter[] parameters)
+        {
+            DataTable table = new DataTable();
+
+            using (SqlConnection con = new SqlConnection(ConnectString))
+            {
+                using (SqlCommand cmd = new SqlCommand(strSql, con))
+                {
+
+                    cmd.CommandType = commandType;
+                    if (parameters != null)
+                    {
+                        foreach (SqlParameter pa in parameters)
+                        {
+                            cmd.Parameters.Add(pa);
+                        }
+                    }
+                    con.Open();
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        adapter.Fill(table);
+                    }
+                }
+
+            }
+            return table;
+        }
+
     }
 }

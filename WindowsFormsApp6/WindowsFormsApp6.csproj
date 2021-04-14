@@ -77,6 +77,12 @@
     <Compile Include="Form4.Designer.cs">
       <DependentUpon>Form4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form5.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form5.Designer.cs">
+      <DependentUpon>Form5.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +109,24 @@
     <Compile Include="添加收支分类.Designer.cs">
       <DependentUpon>添加收支分类.cs</DependentUpon>
     </Compile>
+    <Compile Include="用户列表.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="用户列表.Designer.cs">
+      <DependentUpon>用户列表.cs</DependentUpon>
+    </Compile>
+    <Compile Include="记账记录.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="记账记录.Designer.cs">
+      <DependentUpon>记账记录.cs</DependentUpon>
+    </Compile>
+    <Compile Include="选择日期时间.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="选择日期时间.Designer.cs">
+      <DependentUpon>选择日期时间.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="changeIcon.resx">
       <DependentUpon>changeIcon.cs</DependentUpon>
     </EmbeddedResource>
@@ -117,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form4.resx">
       <DependentUpon>Form4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form5.resx">
+      <DependentUpon>Form5.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListView.resx">
       <DependentUpon>ListView.cs</DependentUpon>
@@ -135,6 +162,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="添加收支分类.resx">
       <DependentUpon>添加收支分类.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="用户列表.resx">
+      <DependentUpon>用户列表.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="记账记录.resx">
+      <DependentUpon>记账记录.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="选择日期时间.resx">
+      <DependentUpon>选择日期时间.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="changeIcon.form">

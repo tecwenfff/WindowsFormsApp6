@@ -69,5 +69,18 @@ namespace WindowsFormsApp6
             添加收支分类 frm = new 添加收支分类();
             frm.Show(); frm.Call += new EventHandler(BindInExpType);
         }
+
+        private void 删除ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count <= 0)
+                MessageBox.Show("请选中至少一项");
+            sqlDbHelper helper = new sqlDbHelper();
+            for (int i = 0; i < listView1.SelectedItems.Count; i++)
+            {
+                string strid = listView1.SelectedItems[i].SubItems[2].Text;
+                helper.ExecuteNonquery("delete from IncomeExpendType where IncomeExependTypeId = @id", CommandType.Text, new SqlParameter("id", strid));
+            }
+            BindInExpType(sender, e);
+        }
     }
 }

@@ -40,6 +40,7 @@ namespace WindowsFormsApp6
             this.列表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.添加记录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.查看ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.删除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -89,9 +90,10 @@ namespace WindowsFormsApp6
             this.图标ToolStripMenuItem,
             this.列表ToolStripMenuItem,
             this.添加记录ToolStripMenuItem,
-            this.查看ToolStripMenuItem});
+            this.查看ToolStripMenuItem,
+            this.删除ToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 114);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 136);
             // 
             // 图标ToolStripMenuItem
             // 
@@ -120,6 +122,13 @@ namespace WindowsFormsApp6
             this.查看ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.查看ToolStripMenuItem.Text = "查看";
             // 
+            // 删除ToolStripMenuItem
+            // 
+            this.删除ToolStripMenuItem.Name = "删除ToolStripMenuItem";
+            this.删除ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.删除ToolStripMenuItem.Text = "删除";
+            this.删除ToolStripMenuItem.Click += new System.EventHandler(this.删除ToolStripMenuItem_Click);
+            // 
             // 收支类目管理
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -146,5 +155,6 @@ namespace WindowsFormsApp6
         private System.Windows.Forms.ToolStripMenuItem 列表ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 添加记录ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 查看ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 删除ToolStripMenuItem;
     }
 }

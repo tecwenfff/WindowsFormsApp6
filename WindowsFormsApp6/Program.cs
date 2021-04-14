@@ -13,7 +13,7 @@ namespace WindowsFormsApp6
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 收支类目管理());
+            Application.Run(new 记账记录());
         }
     }
 }
