@@ -58,9 +58,12 @@ namespace WindowsFormsApp6
             收支类目.DataSource = dt;
             收支类目.DisplayMember = "IncomeExpendTypeName";
             收支类目.ValueMember = "IncomeExependTypeId";
-            User.DataSource = dt;
-            User.DisplayMember = "IncomeExependTypeId";
-            User.ValueMember = "IncomeExpendTypeName";
+            //User.DataSource = dt;
+            //User.DisplayMember = "IncomeExependTypeId";
+            //User.ValueMember = "IncomeExpendTypeName";
+            cmbType.DataSource = dt;
+            cmbType.DisplayMember = "IncomeExpendTypeName";
+            cmbType.ValueMember = "IncomeExependTypeId";
             con.Close();
 
         }
@@ -70,9 +73,113 @@ namespace WindowsFormsApp6
             
         }
 
+        private void dtp_TextChange(object sender, EventArgs e)
+        {
+            dataGridView1.CurrentCell.Value = dtp.Value.ToString();
+        }
+
         private void 记账记录_Load(object sender, EventArgs e)
         {
             dataBind(sender, e);
+            dataGridView1.Controls.Add(dtp);
+            dtp.Visible = false;
+            dtp.Format = DateTimePickerFormat.Custom;
+            dtp.TextChanged += new EventHandler(dtp_TextChange);
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                if (e.ColumnIndex == 4)
+                {
+                    rg = dataGridView1.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
+                    dtp.Size = new Size(rg.Width, rg.Height);
+                    dtp.Location = new Point(rg.Left, rg.Top);
+                    dtp.Visible = true;
+                }
+            }
+            else
+            {
+                dtp.Visible = false;
+            }
+        }
+
+        private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex == 3)
+            {
+                try
+                {
+                    decimal val = Convert.ToDecimal(e.FormattedValue.ToString());
+                    e.Cancel = false;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    e.Cancel = true;
+                }
+            }
+        }
+
+        private void toolSstipButtonUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                con.Open();
+                int count = sda.Update(dtinfor);
+                if (count > 0)
+                {
+                    MessageBox.Show("更新成功");
+                    //MessageBox.Show(count.ToString());
+                    con.Close();
+                }
+                else
+                {
+                    MessageBox.Show("更新失败");
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentRow != null)
+                dataGridView1.Rows.Remove(dataGridView1.CurrentRow);
+        }
+
+        private void toolStripButtonClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
+        {
+            DataRow r = dtinfor.NewRow();
+            r.SetField(0, txtID.Text);
+            r.SetField(1, cmbType.SelectedValue);
+            //r.ItemArray[0] = txtID.Text;
+            //r.ItemArray[1] = cmbType.SelectedValue;
+            decimal money = 0;
+            if (decimal.TryParse(txtMoney.Text, out money) == false)
+            {
+                MessageBox.Show("输入金额不合法");
+                txtMoney.SelectAll();
+                return;
+            }
+            r.SetField(3, money);
+            r.SetField(4, dateTimePicker1.Value);
+            //r.ItemArray[3] = money;
+            //r.ItemArray[4] = dateTimePicker1.Value;
+            dtinfor.Rows.InsertAt(r, dtinfor.Rows.Count);
+            bindingSource1.DataSource = dtinfor;
+            dataGridView1.DataSource = bindingSource1;
+            bindingNavigator1.BindingSource = bindingSource1;
+            //dataBind(sender, e);
         }
     }
 }

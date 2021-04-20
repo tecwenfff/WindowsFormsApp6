@@ -115,6 +115,12 @@
     <Compile Include="用户列表.Designer.cs">
       <DependentUpon>用户列表.cs</DependentUpon>
     </Compile>
+    <Compile Include="简易点菜.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="简易点菜.Designer.cs">
+      <DependentUpon>简易点菜.cs</DependentUpon>
+    </Compile>
     <Compile Include="记账记录.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="用户列表.resx">
       <DependentUpon>用户列表.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="简易点菜.resx">
+      <DependentUpon>简易点菜.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="记账记录.resx">
       <DependentUpon>记账记录.cs</DependentUpon>

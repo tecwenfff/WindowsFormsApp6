@@ -46,6 +46,12 @@ namespace WindowsFormsApp6
             this.toolSstipButtonUpdate = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonClose = new System.Windows.Forms.ToolStripButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.收支类目 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.User = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Money = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.remark = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -53,8 +59,6 @@ namespace WindowsFormsApp6
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtDate = new System.Windows.Forms.TextBox();
-            this.txtTyoe = new System.Windows.Forms.TextBox();
             this.txtMoney = new System.Windows.Forms.TextBox();
             this.txtID = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -62,12 +66,8 @@ namespace WindowsFormsApp6
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.收支类目 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.User = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Money = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.remark = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmbType = new System.Windows.Forms.ComboBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -113,6 +113,7 @@ namespace WindowsFormsApp6
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(52, 22);
             this.bindingNavigatorAddNewItem.Text = "新添";
+            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
             // 
             // bindingNavigatorCountItem
             // 
@@ -128,6 +129,7 @@ namespace WindowsFormsApp6
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(52, 22);
             this.bindingNavigatorDeleteItem.Text = "删除";
+            this.bindingNavigatorDeleteItem.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -197,6 +199,7 @@ namespace WindowsFormsApp6
             this.toolSstipButtonUpdate.Name = "toolSstipButtonUpdate";
             this.toolSstipButtonUpdate.Size = new System.Drawing.Size(52, 22);
             this.toolSstipButtonUpdate.Text = "更新";
+            this.toolSstipButtonUpdate.Click += new System.EventHandler(this.toolSstipButtonUpdate_Click);
             // 
             // toolStripButtonClose
             // 
@@ -205,6 +208,7 @@ namespace WindowsFormsApp6
             this.toolStripButtonClose.Name = "toolStripButtonClose";
             this.toolStripButtonClose.Size = new System.Drawing.Size(52, 22);
             this.toolStripButtonClose.Text = "关闭";
+            this.toolStripButtonClose.Click += new System.EventHandler(this.toolStripButtonClose_Click);
             // 
             // dataGridView1
             // 
@@ -221,6 +225,45 @@ namespace WindowsFormsApp6
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.Size = new System.Drawing.Size(795, 265);
             this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView1_CellValidating);
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            // 
+            // 收支类目
+            // 
+            this.收支类目.HeaderText = "收支类目";
+            this.收支类目.Name = "收支类目";
+            this.收支类目.ReadOnly = true;
+            // 
+            // User
+            // 
+            this.User.HeaderText = "用户";
+            this.User.Name = "User";
+            this.User.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.User.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.User.Visible = false;
+            // 
+            // Money
+            // 
+            this.Money.HeaderText = "金额";
+            this.Money.Name = "Money";
+            this.Money.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Money.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // dateTime
+            // 
+            this.dateTime.HeaderText = "日期时间";
+            this.dateTime.Name = "dateTime";
+            // 
+            // remark
+            // 
+            this.remark.HeaderText = "备注";
+            this.remark.Name = "remark";
             // 
             // groupBox1
             // 
@@ -281,8 +324,8 @@ namespace WindowsFormsApp6
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.txtDate);
-            this.groupBox2.Controls.Add(this.txtTyoe);
+            this.groupBox2.Controls.Add(this.dateTimePicker1);
+            this.groupBox2.Controls.Add(this.cmbType);
             this.groupBox2.Controls.Add(this.txtMoney);
             this.groupBox2.Controls.Add(this.txtID);
             this.groupBox2.Controls.Add(this.label5);
@@ -296,20 +339,6 @@ namespace WindowsFormsApp6
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "收支记账详细记录";
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
-            // 
-            // txtDate
-            // 
-            this.txtDate.Location = new System.Drawing.Point(512, 111);
-            this.txtDate.Name = "txtDate";
-            this.txtDate.Size = new System.Drawing.Size(170, 21);
-            this.txtDate.TabIndex = 4;
-            // 
-            // txtTyoe
-            // 
-            this.txtTyoe.Location = new System.Drawing.Point(512, 53);
-            this.txtTyoe.Name = "txtTyoe";
-            this.txtTyoe.Size = new System.Drawing.Size(170, 21);
-            this.txtTyoe.TabIndex = 4;
             // 
             // txtMoney
             // 
@@ -348,9 +377,9 @@ namespace WindowsFormsApp6
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(466, 29);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(65, 12);
+            this.label7.Size = new System.Drawing.Size(53, 12);
             this.label7.TabIndex = 1;
-            this.label7.Text = "收支类别ID";
+            this.label7.Text = "收支类别";
             // 
             // label8
             // 
@@ -365,41 +394,20 @@ namespace WindowsFormsApp6
             // 
             this.bindingSource1.CurrentChanged += new System.EventHandler(this.bindingSource1_CurrentChanged);
             // 
-            // ID
+            // cmbType
             // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
+            this.cmbType.FormattingEnabled = true;
+            this.cmbType.Location = new System.Drawing.Point(514, 49);
+            this.cmbType.Name = "cmbType";
+            this.cmbType.Size = new System.Drawing.Size(168, 20);
+            this.cmbType.TabIndex = 5;
             // 
-            // 收支类目
+            // dateTimePicker1
             // 
-            this.收支类目.HeaderText = "收支类目";
-            this.收支类目.Name = "收支类目";
-            this.收支类目.ReadOnly = true;
-            // 
-            // User
-            // 
-            this.User.HeaderText = "用户";
-            this.User.Name = "User";
-            this.User.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.User.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // Money
-            // 
-            this.Money.HeaderText = "金额";
-            this.Money.Name = "Money";
-            this.Money.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Money.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // dateTime
-            // 
-            this.dateTime.HeaderText = "日期时间";
-            this.dateTime.Name = "dateTime";
-            // 
-            // remark
-            // 
-            this.remark.HeaderText = "备注";
-            this.remark.Name = "remark";
+            this.dateTimePicker1.Location = new System.Drawing.Point(514, 108);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(168, 21);
+            this.dateTimePicker1.TabIndex = 6;
             // 
             // 记账记录
             // 
@@ -450,8 +458,6 @@ namespace WindowsFormsApp6
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox txtDate;
-        private System.Windows.Forms.TextBox txtTyoe;
         private System.Windows.Forms.TextBox txtMoney;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label label5;
@@ -466,5 +472,7 @@ namespace WindowsFormsApp6
         private System.Windows.Forms.DataGridViewTextBoxColumn Money;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn remark;
+        private System.Windows.Forms.ComboBox cmbType;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
