@@ -123,6 +123,8 @@ namespace WindowsFormsApp6
             this.btnOrder.TabIndex = 8;
             this.btnOrder.Text = "点菜";
             this.btnOrder.UseVisualStyleBackColor = true;
+            this.btnOrder.Click += new System.EventHandler(this.btnOrder_Click);
+            this.btnOrder.DragDrop += new System.Windows.Forms.DragEventHandler(this.btnOrder_DragDrop);
             // 
             // disOrder
             // 
@@ -132,6 +134,7 @@ namespace WindowsFormsApp6
             this.disOrder.TabIndex = 9;
             this.disOrder.Text = "退菜";
             this.disOrder.UseVisualStyleBackColor = true;
+            this.disOrder.Click += new System.EventHandler(this.disOrder_Click);
             // 
             // btnAll
             // 
@@ -141,6 +144,7 @@ namespace WindowsFormsApp6
             this.btnAll.TabIndex = 10;
             this.btnAll.Text = "全点";
             this.btnAll.UseVisualStyleBackColor = true;
+            this.btnAll.Click += new System.EventHandler(this.btnAll_Click);
             // 
             // btnDisAll
             // 
@@ -150,6 +154,7 @@ namespace WindowsFormsApp6
             this.btnDisAll.TabIndex = 11;
             this.btnDisAll.Text = "全退";
             this.btnDisAll.UseVisualStyleBackColor = true;
+            this.btnDisAll.Click += new System.EventHandler(this.btnDisAll_Click);
             // 
             // label5
             // 
@@ -176,6 +181,7 @@ namespace WindowsFormsApp6
             this.btnPringBill.TabIndex = 14;
             this.btnPringBill.Text = "打印账单";
             this.btnPringBill.UseVisualStyleBackColor = true;
+            this.btnPringBill.Click += new System.EventHandler(this.btnPringBill_Click);
             // 
             // 简易点菜
             // 
@@ -198,10 +204,11 @@ namespace WindowsFormsApp6
             this.Controls.Add(this.txtTbale);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("宋体", 15F);
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "简易点菜";
             this.Text = "简易点菜";
             this.Load += new System.EventHandler(this.简易点菜_Load);
+            this.Click += new System.EventHandler(this.简易点菜_Click);
             this.ResumeLayout(false);
             this.PerformLayout();
 

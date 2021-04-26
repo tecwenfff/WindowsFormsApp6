@@ -39,7 +39,8 @@ namespace WindowsFormsApp6
             dt.Rows.Add(r);
             listBox1.DataSource = dt;
             listBox1.DisplayMember = "菜名";
-
+            txtTotalPrice.Text = "0";
+            label5.Text = DateTime.Now.ToString();
         }
         class dash
         {
@@ -60,6 +61,67 @@ namespace WindowsFormsApp6
                 string message = string.Format("该菜品 : {0}\n 价格: {1}\n 来源:{2}\n 菜谱:{3}", dt.Rows[listBox1.SelectedIndex].ItemArray[0], dt.Rows[listBox1.SelectedIndex].ItemArray[1], dt.Rows[listBox1.SelectedIndex].ItemArray[2], dt.Rows[listBox1.SelectedIndex].ItemArray[3]);
                 MessageBox.Show(message, "菜品信息");
             }
+        }
+        decimal pr = 0;
+        private void btnOrder_Click(object sender, EventArgs e)
+        {
+            if (listBox1.SelectedIndex >= 0)
+            {
+                listBox2.Items.Add(dt.Rows[listBox1.SelectedIndex].ItemArray[0]);
+                pr += Convert.ToDecimal(dt.Rows[listBox1.SelectedIndex].ItemArray[1]);
+                txtTotalPrice.Text = pr.ToString();
+            }
+        }
+
+        private void disOrder_Click(object sender, EventArgs e)
+        {
+            if (listBox2.SelectedIndex >= 0)
+            {
+                string str = listBox2.SelectedItem.ToString();
+                DataRow[] array = dt.Select("菜名 = '" + str + "'");
+                pr -= Convert.ToDecimal(array[0].ItemArray[1]);
+                txtTotalPrice.Text = pr.ToString();
+                listBox2.Items.Remove(listBox2.SelectedItem);
+            }
+        }
+
+        private void btnAll_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < listBox1.Items.Count; i++)
+            {
+                listBox2.Items.Add(dt.Rows[i].ItemArray[0]);
+                pr += Convert.ToDecimal(dt.Rows[i].ItemArray[1]);
+                txtTotalPrice.Text = pr.ToString();
+            }
+        }
+
+        private void btnDisAll_Click(object sender, EventArgs e)
+        {
+            listBox2.Items.Clear();
+            pr = 0;
+            txtTotalPrice.Text = pr.ToString();
+        }
+
+        private void btnPringBill_Click(object sender, EventArgs e)
+        {
+            string str = "您点的菜为:\n";
+            for (int i = 0; i < listBox2.Items.Count; i++)
+            {
+                DataRow[] datarow = dt.Select("菜名 = '" + listBox2.Items[i].ToString() + "'");
+                str += listBox2.Items[i].ToString() + "--" + datarow[0].ItemArray[1].ToString() + "￥" + "\n";
+            }
+            str += "共计价格为: " + pr.ToString();
+            MessageBox.Show(str);
+        }
+
+        private void btnOrder_DragDrop(object sender, DragEventArgs e)
+        {
+            //MessageBox.Show("zhou");
+        }
+
+        private void 简易点菜_Click(object sender, EventArgs e)
+        {
+            //MessageBox.Show("zhou");
         }
     }
 }

@@ -38,8 +38,11 @@ namespace WindowsFormsApp6
             while (reader.Read())
             {
                 string show = "\r\n" + reader.GetInt32(0).ToString() + "\t" + reader.GetString(1) + "\t" + reader.GetString(2) + "\t" + reader.GetString(3) + "\t" + reader.GetSqlMoney(4) + "\t" + reader.GetDateTime(5) + "\r\n";
+
                 textBox1.AppendText(show);
             }
+            person zhouhongyan = new person();
+            
         }
 
         private void Form3_Load(object sender, EventArgs e)
@@ -55,6 +58,18 @@ namespace WindowsFormsApp6
             sq.ConnectionString = "Data Source=DESKTOP-7OA7319;Database=note;Integrated Security=true;";
             sq.Open();
             return sq;
+        }
+
+    }
+    public class person
+    {
+        public int age;
+        public string name;
+        public int tall;
+        public int weight;
+        public void talk()
+        {
+            MessageBox.Show("我叫周红岩");
         }
     }
 }

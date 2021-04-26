@@ -34,11 +34,11 @@ namespace WindowsFormsApp6
             this.button1 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.noteDataSet = new WindowsFormsApp6.noteDataSet();
             this.userLoginBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.noteDataSet = new WindowsFormsApp6.noteDataSet();
             this.userLoginTableAdapter = new WindowsFormsApp6.noteDataSetTableAdapters.UserLoginTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.noteDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userLoginBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.noteDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
@@ -79,15 +79,15 @@ namespace WindowsFormsApp6
             this.comboBox1.TabIndex = 3;
             this.comboBox1.ValueMember = "UserAccount";
             // 
-            // noteDataSet
-            // 
-            this.noteDataSet.DataSetName = "noteDataSet";
-            this.noteDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // userLoginBindingSource
             // 
             this.userLoginBindingSource.DataMember = "UserLogin";
             this.userLoginBindingSource.DataSource = this.noteDataSet;
+            // 
+            // noteDataSet
+            // 
+            this.noteDataSet.DataSetName = "noteDataSet";
+            this.noteDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // userLoginTableAdapter
             // 
@@ -105,8 +105,8 @@ namespace WindowsFormsApp6
             this.Name = "Form3";
             this.Text = "Form3";
             this.Load += new System.EventHandler(this.Form3_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.noteDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userLoginBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.noteDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
